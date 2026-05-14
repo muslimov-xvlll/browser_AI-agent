@@ -12,7 +12,7 @@ from PIL import Image
 
 load_dotenv()
 
-client = genai.Client(os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 PRIMARY_MODEL = os.getenv("AGENT_MODEL")
 # FALLBACK_MODELS = os.getenv("FALLBACK_AGENT_MODEL")
