@@ -14,7 +14,7 @@ load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-PRIMARY_MODEL = os.getenv("AGENT_MODEL")
+PRIMARY_MODEL = os.getenv("PRIMARY_AGENT_MODEL")
 # FALLBACK_MODELS = os.getenv("FALLBACK_AGENT_MODEL")
 USER_DATA_DIR = os.path.join(os.getcwd(), "browser_profile_clean")
 
@@ -467,7 +467,10 @@ async def main():
             await asyncio.sleep(1)
 
         print("\n--- Работа агента завершена ---")
-        await asyncio.sleep(5)
+        try:
+            await asyncio.Future()  # Бесконечное ожидание
+        except KeyboardInterrupt:
+            print("Завершение работы...")
         await context.close()
 
 if __name__ == "__main__":
